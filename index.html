@@ -17,20 +17,17 @@ body {
   height: 100vh;
 }
 
-/* Main pickup line */
 #text {
   font-size: 42px;
   font-weight: bold;
 }
 
-/* "scan again" line */
 #sub {
   margin-top: 20px;
   font-size: 20px;
   opacity: 0.7;
 }
 
-/* Bottom vote text */
 #footer {
   position: fixed;
   bottom: 15px;
@@ -46,38 +43,34 @@ body {
 
 <div id="text"></div>
 <div id="sub">Scan again for another pickup line</div>
-
 <div id="footer">VOTE HYRUM FOR SERVICE</div>
 
 <script>
-window.onload = function() {
-  const pickupLines = [
+const pickupLines = [
 "If I could rearrange the alphabet I'd put U and I together",
-"I don't like spotify anymore. You're not on their top hottest singles",
-"My lawer told me that we have the freedom of speech, but I lost it the first time I saw you",
+"I don't like Spotify anymore. You're not on their top hottest singles",
+"My lawyer told me that we have the freedom of speech, but I lost it the first time I saw you",
 "Do you know the 21 letters of the alphabet? Oh whoops I forgot U R A Q T",
-"Life without you is like a broken pencil.... it's pointless",
+"Life without you is like a broken pencil... it's pointless",
 "Do you play soccer? Cause you look like a keeper",
 "You must be tired from running around my mind all day",
-"Are you lightning? Because youre my Queen",
+"Are you lightning? Because you're my queen",
 "I hope you know CPR, because you just took my breath away",
 "Hi, I'm (your name). Do you remember me? Oh, that's right. We've only met in my dreams",
 "If beauty was a crime you would be serving a life sentence",
 "I’m not an organ donor… but I would be happy to give you my heart",
-"Sorry that I'm following you, its just that my mom told me to chase my dreams",
+"Sorry that I'm following you, it's just that my mom told me to chase my dreams",
 "Is your name Google? Cause you have everything I'm searching for",
 "I hear you're good at algebra. Will you replace my X without asking Y?",
 "I hate math, it’s always talking about x and y but never about u and i",
 "How free are you tonight on a scale of 1 to America?",
-"You should starting calling me Q because I need U next to me at all times",
+"You should start calling me Q because I need U next to me at all times",
 "Here I am! What are your other two wishes?",
-"DANG GIRL YOU LOOK LIKE A HIPPOPOTAMUS!!!!! But lucky for you..... I wanna hippopotamus for christmas"
-"
-  ];
+"DANG GIRL YOU LOOK LIKE A HIPPOPOTAMUS!!!!! But lucky for you... I wanna hippopotamus for Christmas"
+];
 
-  const randomIndex = Math.floor(Math.random() * pickupLines.length);
-  document.getElementById("text").innerText = pickupLines[randomIndex];
-};
+document.getElementById("text").innerText =
+  pickupLines[Math.floor(Math.random() * pickupLines.length)];
 </script>
 
 </body>
