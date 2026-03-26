@@ -1,47 +1,92 @@
-<script>
-const pickupLines = [
-"If I could rearrange the alphabet I'd put U and I together",
-"I don't like Spotify anymore. You're not on their top hottest singles",
-"My lawyer told me that we have the freedom of speech, but I lost it the first time I saw you",
-"Do you know the 21 letters of the alphabet? Oh whoops I forgot U R A Q T",
-"Life without you is like a broken pencil... it's pointless",
-"Do you play soccer? Cause you look like a keeper",
-"You must be tired from running around my mind all day",
-"Are you lightning? Because you're my queen",
-"I hope you know CPR, because you just took my breath away",
-"Hi, I'm (your name). Do you remember me? Oh, that's right. We've only met in my dreams",
-"If beauty was a crime you would be serving a life sentence",
-"I’m not an organ donor… but I would be happy to give you my heart",
-"Sorry that I'm following you, it's just that my mom told me to chase my dreams",
-"Is your name Google? Cause you have everything I'm searching for",
-"I hear you're good at algebra. Will you replace my X without asking Y?",
-"I hate math, it’s always talking about x and y but never about u and i",
-"How free are you tonight on a scale of 1 to America?",
-"You should start calling me Q because I need U next to me at all times",
-"Here I am! What are your other two wishes?",
-"DANG GIRL YOU LOOK LIKE A HIPPOPOTAMUS!!!!! But lucky for you... I wanna hippopotamus for Christmas"
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pickup Lines</title>
 
-// load saved order
-let order = JSON.parse(localStorage.getItem("order"));
-
-// if no order OR finished → reshuffle
-if (!order || order.length === 0) {
-  order = [...Array(pickupLines.length).keys()];
-  
-  // shuffle
-  for (let i = order.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [order[i], order[j]] = [order[j], order[i]];
-  }
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
-// get next item
-const index = order.pop();
+#text {
+  font-size: 42px;
+  font-weight: bold;
+}
 
-// save updated order
-localStorage.setItem("order", JSON.stringify(order));
+#sub {
+  margin-top: 20px;
+  font-size: 24px;
+  opacity: 0.8;
+}
 
-// show it
-document.getElementById("text").innerText = pickupLines[index];
+#footer {
+  position: fixed;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="text"></div>
+<div id="sub">Scan again for another pickup line</div>
+<div id="footer">VOTE HYRUM FOR SERVICE</div>
+
+<script>
+window.onload = function() {
+  const pickupLines = [
+    "If I could rearrange the alphabet I'd put U and I together",
+    "I don't like Spotify anymore. You're not on their top hottest singles",
+    "My lawyer told me that we have the freedom of speech, but I lost it the first time I saw you",
+    "Do you know the 21 letters of the alphabet? Oh whoops I forgot U R A Q T",
+    "Life without you is like a broken pencil... it's pointless",
+    "Do you play soccer? Cause you look like a keeper",
+    "You must be tired from running around my mind all day",
+    "Are you lightning? Because you're my queen",
+    "I hope you know CPR, because you just took my breath away",
+    "Hi, I'm (your name). Do you remember me? Oh, that's right. We've only met in my dreams",
+    "If beauty was a crime you would be serving a life sentence",
+    "I’m not an organ donor… but I would be happy to give you my heart",
+    "Sorry that I'm following you, it's just that my mom told me to chase my dreams",
+    "Is your name Google? Cause you have everything I'm searching for",
+    "I hear you're good at algebra. Will you replace my X without asking Y?",
+    "I hate math, it’s always talking about x and y but never about u and i",
+    "How free are you tonight on a scale of 1 to America?",
+    "You should start calling me Q because I need U next to me at all times",
+    "Here I am! What are your other two wishes?",
+    "DANG GIRL YOU LOOK LIKE A HIPPOPOTAMUS!!!!! But lucky for you... I wanna hippopotamus for Christmas"
+  ];
+
+  // use a separate storage key so it doesn't conflict with dad jokes
+  let order = JSON.parse(localStorage.getItem("pickupOrder"));
+
+  if (!order || order.length === 0) {
+    order = [...Array(pickupLines.length).keys()];
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+  }
+
+  const index = order.pop();
+  localStorage.setItem("pickupOrder", JSON.stringify(order));
+
+  document.getElementById("text").innerText = pickupLines[index];
+};
 </script>
+
+</body>
+</html>
