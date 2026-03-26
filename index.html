@@ -1,50 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pickup Lines</title>
-
-<style>
-body {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-}
-
-#text {
-  font-size: 42px;
-  font-weight: bold;
-}
-
-#sub {
-  margin-top: 20px;
-  font-size: 20px;
-  opacity: 0.7;
-}
-
-#footer {
-  position: fixed;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-}
-</style>
-</head>
-
-<body>
-
-<div id="text"></div>
-<div id="sub">Scan again for another pickup line</div>
-<div id="footer">VOTE HYRUM FOR SERVICE</div>
-
 <script>
 const pickupLines = [
 "If I could rearrange the alphabet I'd put U and I together",
@@ -69,9 +22,26 @@ const pickupLines = [
 "DANG GIRL YOU LOOK LIKE A HIPPOPOTAMUS!!!!! But lucky for you... I wanna hippopotamus for Christmas"
 ];
 
-document.getElementById("text").innerText =
-  pickupLines[Math.floor(Math.random() * pickupLines.length)];
-</script>
+// load saved order
+let order = JSON.parse(localStorage.getItem("order"));
 
-</body>
-</html>
+// if no order OR finished → reshuffle
+if (!order || order.length === 0) {
+  order = [...Array(pickupLines.length).keys()];
+  
+  // shuffle
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+}
+
+// get next item
+const index = order.pop();
+
+// save updated order
+localStorage.setItem("order", JSON.stringify(order));
+
+// show it
+document.getElementById("text").innerText = pickupLines[index];
+</script>
